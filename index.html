@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expo Supply International | Authentic Caribbean Flavor + Pro-Grade Clean</title>
+<meta name="description" content="Family-run Caribbean food and cleaning products distributor. Chef Yves Beaubrun's signature Haitian seasonings and pro-grade laundry line. Made in the USA, shipped from Lake Worth, FL.">
+<link rel="icon" type="image/png" href="./images/approved.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          royal:    { 50:'#E6EEF8', 100:'#C2D5EE', 500:'#0A4DAA', 600:'#093E8B', 700:'#072F6B', 900:'#031D44' },
+          caribbean:{ 500:'#1A4314', 600:'#143510', 700:'#0E260C' },
+          haitian:  { 500:'#D21034', 600:'#A50C29' },
+          cream:    { 50:'#FFFCF3', 100:'#FFF8E7', 200:'#FAEFCD' },
+          ink:      { 900:'#0A0E1A', 700:'#2A2F3D', 500:'#525866' }
+        },
+        fontFamily: {
+          display: ['Montserrat', 'sans-serif'],
+          body:    ['Lato', 'sans-serif']
+        },
+        boxShadow: {
+          'product-card': '0 1px 2px rgba(10,77,170,0.04), 0 8px 24px -8px rgba(10,77,170,0.12), 0 24px 48px -16px rgba(10,77,170,0.10)',
+          'product-card-hover': '0 4px 8px rgba(10,77,170,0.08), 0 16px 32px -8px rgba(10,77,170,0.18), 0 40px 80px -20px rgba(10,77,170,0.16)',
+          'food-card': '0 1px 2px rgba(26,67,20,0.05), 0 8px 24px -8px rgba(26,67,20,0.15), 0 24px 48px -16px rgba(26,67,20,0.12)',
+          'food-card-hover': '0 4px 8px rgba(26,67,20,0.10), 0 16px 32px -8px rgba(26,67,20,0.22), 0 40px 80px -20px rgba(26,67,20,0.18)',
+          'cta': '0 8px 24px -4px rgba(10,77,170,0.30), 0 16px 48px -12px rgba(10,77,170,0.20)'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #2A2F3D; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
+  h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.025em; line-height: 1.1; }
+  h1 { letter-spacing: -0.035em; }
+  .display-xl { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; }
+  .display-lg { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 800; }
+  .display-md { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; }
+  /* Page sections */
+  .page { display: none; }
+  .page.active { display: block; }
+  /* Smooth transforms only, no transition-all */
+  .t-transform { transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .t-opacity   { transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .t-shadow    { transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1); }
+  /* Variant pill */
+  .variant-pill { transition: background-color 180ms, color 180ms, border-color 180ms; }
+  /* Underline link */
+  .link-underline { position: relative; }
+  .link-underline::after { content:''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .link-underline:hover::after, .link-underline:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+  /* Hero gradient overlay */
+  .hero-overlay { background: linear-gradient(125deg, rgba(10,77,170,0.65) 0%, rgba(10,77,170,0.30) 55%, rgba(10,77,170,0.10) 100%); }
+  /* Food trust accent — Haitian-flag gradient stripe */
+  .haitian-stripe { background: linear-gradient(90deg, #0A4DAA 0%, #0A4DAA 50%, #D21034 50%, #D21034 100%); }
+  /* Active nav link underline */
+  .nav-link.active { color: #0A4DAA; }
+  .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+  /* Card image clip */
+  .card-img-wrap { background: radial-gradient(circle at 30% 30%, #FFFCF3, #F2EDD8); }
+  .card-img-wrap.cleaning { background: radial-gradient(circle at 30% 30%, #E6EEF8, #C2D5EE); }
+  /* Focus ring */
+  :focus-visible { outline: 3px solid #0A4DAA; outline-offset: 3px; border-radius: 4px; }
+  /* Grain texture overlay for hero (subtle depth) */
+  .grain { position: relative; }
+  .grain::before {
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:0.08; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-cream-200/40">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-2.5 t-transform hover:scale-[1.02] active:scale-100" aria-label="Expo Supply International home">
+      <img src="./images/approved.png" alt="Expo Supply" class="h-10 w-auto">
+    </a>
+    <button id="mobile-toggle" class="md:hidden p-2 -mr-2" aria-label="Toggle menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <ul class="hidden md:flex items-center gap-9 font-display font-medium text-sm tracking-wide text-ink-700" id="desktop-nav">
+      <li><a href="#home"     class="nav-link link-underline py-1">Home</a></li>
+      <li><a href="#products" class="nav-link link-underline py-1">Shop</a></li>
+      <li><a href="#about"    class="nav-link link-underline py-1">About</a></li>
+      <li><a href="#contact"  class="nav-link link-underline py-1">Contact</a></li>
+    </ul>
+    <a href="#products" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-royal-500 text-white font-display font-semibold text-sm shadow-cta t-transform hover:scale-[1.03] active:scale-100">Shop now</a>
+  </nav>
+  <div id="mobile-nav" class="md:hidden hidden border-t border-cream-200 bg-white">
+    <ul class="flex flex-col py-2">
+      <li><a href="#home"     class="nav-link block px-6 py-3 font-display font-medium">Home</a></li>
+      <li><a href="#products" class="nav-link block px-6 py-3 font-display font-medium">Shop</a></li>
+      <li><a href="#about"    class="nav-link block px-6 py-3 font-display font-medium">About</a></li>
+      <li><a href="#contact"  class="nav-link block px-6 py-3 font-display font-medium">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="pt-16">
+
+<!-- ───────────────────────────────────────── HOME ───────────────────────────────────────── -->
+<section id="home" class="page active">
+
+  <!-- HERO -->
+  <div class="relative grain h-[78vh] min-h-[560px] max-h-[780px] overflow-hidden">
+    <img src="./images/home_hero.png" alt="Caribbean food and cleaning products lifestyle" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 hero-overlay"></div>
+    <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 flex flex-col justify-end pb-16 sm:pb-24">
+      <p class="font-display text-cream-100 uppercase text-xs sm:text-sm tracking-[0.25em] mb-5 font-medium">Caribbean Distribution · Made in USA</p>
+      <h1 class="display-xl text-white max-w-3xl mb-6">Authentic Caribbean Flavor.<br><span class="text-cream-100">Pro-Grade Clean.</span></h1>
+      <p class="text-white/90 text-lg sm:text-xl max-w-xl mb-8 font-light">Chef Yves Beaubrun's signature Haitian seasonings + our pro-grade cleaning line. Shipped from Lake Worth, FL.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#products" class="inline-flex items-center px-7 py-3.5 rounded-full bg-white text-royal-700 font-display font-semibold shadow-cta t-transform hover:scale-[1.03] active:scale-100">Shop All Products
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#about" class="inline-flex items-center px-7 py-3.5 rounded-full border-2 border-white/40 text-white font-display font-semibold backdrop-blur-sm t-transform hover:scale-[1.03] active:scale-100 hover:bg-white/10">Meet Chef Yves</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED FOOD -->
+  <div class="bg-cream-100 py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+      <div class="relative">
+        <div class="haitian-stripe absolute -top-3 left-0 h-1.5 w-24"></div>
+        <p class="font-display font-semibold text-caribbean-500 uppercase text-xs tracking-[0.25em] mb-4">The Andwi Line</p>
+        <h2 class="display-lg text-ink-900 mb-6">Haitian Style.<br>Made With Love.</h2>
+        <p class="text-ink-700 text-lg mb-8 max-w-lg">Bold flavor. Pure tradition. Chef Yves Beaubrun's all-natural seasonings — scallions, garlic, onion, thyme, celery, parsley, clove, sour orange, olive oil. No MSG. No artificial flavors.</p>
+        <ul class="space-y-3 mb-9">
+          <li class="flex items-center text-ink-700"><span class="w-1.5 h-1.5 rounded-full bg-caribbean-500 mr-3"></span><strong class="font-display font-semibold mr-1.5">Andwi Haitian Style</strong> Artisan Seasoning — 12 oz</li>
+          <li class="flex items-center text-ink-700"><span class="w-1.5 h-1.5 rounded-full bg-caribbean-500 mr-3"></span><strong class="font-display font-semibold mr-1.5">Viann Kochon Sale</strong> Pork Seasoning — 12 oz</li>
+        </ul>
+        <a href="#products?cat=food" data-shop-filter="food" class="inline-flex items-center px-6 py-3 rounded-full bg-caribbean-500 text-white font-display font-semibold t-transform hover:scale-[1.03] active:scale-100 hover:bg-caribbean-600">Shop the Food Line
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="relative">
+        <img src="./images/home_food_lifestyle.png" alt="Haitian cooking prep with Andwi seasoning" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-food-card">
+        <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-2xl bg-haitian-500/95 text-white p-4 flex flex-col justify-center shadow-cta hidden sm:flex">
+          <p class="font-display text-3xl font-black leading-none">100%</p>
+          <p class="font-display text-xs tracking-wide uppercase mt-1">All natural</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED CLEANING -->
+  <div class="bg-white py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+      <div class="relative order-2 lg:order-1">
+        <img src="./images/home_cleaning_lifestyle.png" alt="Modern laundry room with Smell Fabric softener" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-product-card">
+        <div class="absolute -top-6 -left-6 w-28 h-28 rounded-2xl bg-royal-500/95 text-white p-4 flex flex-col justify-center shadow-cta hidden sm:flex">
+          <p class="font-display text-3xl font-black leading-none">HE</p>
+          <p class="font-display text-xs tracking-wide uppercase mt-1">Compatible</p>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <div class="absolute -mt-3 h-1.5 w-24 bg-royal-500"></div>
+        <p class="font-display font-semibold text-royal-500 uppercase text-xs tracking-[0.25em] mb-4 mt-2">Cleaning Line</p>
+        <h2 class="display-lg text-ink-900 mb-6">Deep Clean.<br>Long-Lasting Freshness.</h2>
+        <p class="text-ink-700 text-lg mb-8 max-w-lg">Tough on stains. Soft on fabrics. Our cleaning line works in all machines — including high-efficiency (HE) — and comes in two sizes: a 1-gallon jug for home use or a 5-gallon bucket for heavy-duty days.</p>
+        <ul class="space-y-3 mb-9">
+          <li class="flex items-center text-ink-700"><span class="w-1.5 h-1.5 rounded-full bg-royal-500 mr-3"></span><strong class="font-display font-semibold mr-1.5">Ives Laundry Detergent</strong> — 1 gal / 5 gal bucket</li>
+          <li class="flex items-center text-ink-700"><span class="w-1.5 h-1.5 rounded-full bg-royal-500 mr-3"></span><strong class="font-display font-semibold mr-1.5">Smell Fabric — Blue Sky Softener</strong> — 1 gal / 5 gal bucket</li>
+        </ul>
+        <a href="#products?cat=cleaning" data-shop-filter="cleaning" class="inline-flex items-center px-6 py-3 rounded-full bg-royal-500 text-white font-display font-semibold t-transform hover:scale-[1.03] active:scale-100 hover:bg-royal-600">Shop the Cleaning Line
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST BAND -->
+  <div class="bg-royal-500 text-white py-12 relative overflow-hidden">
+    <div class="grain absolute inset-0 opacity-40"></div>
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 text-center">
+      <p class="font-display text-xl sm:text-2xl font-medium tracking-tight">Made in the USA. <span class="opacity-90">Trusted in every kitchen.</span> <span class="opacity-90">Shipped from Lake Worth, FL.</span></p>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="bg-cream-50 py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <h2 class="display-md text-ink-900 mb-5">Ready to stock up?</h2>
+      <p class="text-ink-700 text-lg mb-9">Shop the full line — Caribbean food and everyday cleaning, all in one place.</p>
+      <a href="#products" class="inline-flex items-center px-8 py-4 rounded-full bg-royal-500 text-white font-display font-semibold shadow-cta t-transform hover:scale-[1.03] active:scale-100 hover:bg-royal-600">Shop All Products
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── PRODUCTS ───────────────────────────────────────── -->
+<section id="products" class="page">
+  <div class="relative grain h-72 sm:h-96 overflow-hidden">
+    <img src="./images/products_banner.png" alt="Caribbean pantry shelf" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-royal-700/85 via-royal-700/55 to-transparent"></div>
+    <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 flex flex-col justify-center">
+      <p class="font-display text-cream-100 uppercase text-xs sm:text-sm tracking-[0.25em] mb-3 font-medium">Caribbean Distribution</p>
+      <h1 class="display-lg text-white">Shop All Products</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10">
+      <p class="text-ink-500 max-w-2xl">Authentic Haitian seasonings from Chef Yves Beaubrun, plus our pro-grade laundry line. Filter by category or browse everything below.</p>
+      <div class="inline-flex bg-cream-100 rounded-full p-1.5" role="tablist" aria-label="Category filter">
+        <button data-filter="all"      class="filter-tab active px-5 py-2 rounded-full font-display font-semibold text-sm variant-pill" role="tab">All</button>
+        <button data-filter="food"     class="filter-tab px-5 py-2 rounded-full font-display font-semibold text-sm text-ink-700 variant-pill" role="tab">Food</button>
+        <button data-filter="cleaning" class="filter-tab px-5 py-2 rounded-full font-display font-semibold text-sm text-ink-700 variant-pill" role="tab">Cleaning</button>
+      </div>
+    </div>
+
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7"></div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── PRODUCT DETAIL ───────────────────────────────────────── -->
+<section id="product-detail" class="page">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
+    <a href="#products" class="inline-flex items-center text-ink-500 text-sm mb-8 link-underline">
+      <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to all products
+    </a>
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <!-- Gallery -->
+      <div>
+        <div id="pd-main" class="aspect-square card-img-wrap rounded-2xl overflow-hidden shadow-product-card mb-4">
+          <img id="pd-main-img" src="" alt="" class="w-full h-full object-contain p-6 sm:p-10">
+        </div>
+        <div id="pd-thumbs" class="grid grid-cols-3 gap-3"></div>
+      </div>
+      <!-- Info -->
+      <div>
+        <p id="pd-cat" class="font-display font-semibold uppercase text-xs tracking-[0.25em] mb-3"></p>
+        <h1 id="pd-name" class="display-md text-ink-900 mb-4"></h1>
+        <p id="pd-desc" class="text-ink-700 text-lg leading-relaxed mb-8"></p>
+
+        <!-- Variant selector (rendered conditionally) -->
+        <div id="pd-variants-wrap" class="mb-7 hidden">
+          <p class="font-display font-semibold text-sm uppercase tracking-wider text-ink-500 mb-3">Size</p>
+          <div id="pd-variants" class="inline-flex bg-cream-100 rounded-full p-1.5"></div>
+        </div>
+
+        <div class="flex items-end gap-5 mb-8">
+          <div>
+            <p class="font-display text-xs uppercase tracking-wider text-ink-500 mb-1">Price</p>
+            <p id="pd-price" class="display-md text-ink-900"></p>
+          </div>
+          <a id="pd-buy" href="#" class="inline-flex items-center px-7 py-3.5 rounded-full bg-royal-500 text-white font-display font-semibold shadow-cta t-transform hover:scale-[1.03] active:scale-100 hover:bg-royal-600">Buy Now
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="border-t border-cream-200 pt-7">
+          <div class="flex gap-7 mb-5 border-b border-cream-200" id="pd-tab-buttons" role="tablist">
+            <button data-tab="desc"   class="pd-tab active pb-3 font-display font-semibold text-sm text-ink-900 border-b-2 border-royal-500 -mb-px">Description</button>
+            <button data-tab="benefits" class="pd-tab pb-3 font-display font-semibold text-sm text-ink-500 hover:text-ink-900">Key Benefits</button>
+            <button data-tab="ingredients" class="pd-tab pb-3 font-display font-semibold text-sm text-ink-500 hover:text-ink-900">Ingredients &amp; Use</button>
+          </div>
+          <div class="prose prose-sm max-w-none">
+            <div class="pd-tab-panel" data-panel="desc" id="pd-panel-desc"></div>
+            <div class="pd-tab-panel hidden" data-panel="benefits" id="pd-panel-benefits"></div>
+            <div class="pd-tab-panel hidden" data-panel="ingredients" id="pd-panel-ingredients"></div>
+          </div>
+          <div class="flex items-center gap-3 mt-7 pt-5 border-t border-cream-200">
+            <div class="w-10 h-10 rounded-full bg-haitian-500 text-white flex items-center justify-center text-sm font-display font-black">USA</div>
+            <p class="text-ink-700 text-sm">Made in the USA. Shipped from Lake Worth, FL.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related -->
+    <div class="mt-20">
+      <h2 class="display-md text-ink-900 mb-8">You might also like</h2>
+      <div id="pd-related" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── ABOUT ───────────────────────────────────────── -->
+<section id="about" class="page">
+  <div class="bg-cream-50 py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <p class="font-display font-semibold text-royal-500 uppercase text-xs tracking-[0.25em] mb-5">About Expo Supply</p>
+      <h1 class="display-lg text-ink-900 mb-7">Caribbean Roots.<br>American Made.</h1>
+      <p class="text-ink-700 text-lg leading-relaxed">Expo Supply International is a family-run distributor based in Lake Worth, Florida. We bring authentic Haitian flavor and pro-grade cleaning to your door — all manufactured right here in the USA.</p>
+    </div>
+  </div>
+
+  <!-- Chef Yves -->
+  <div class="bg-white py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="relative aspect-[4/5] card-img-wrap rounded-2xl overflow-hidden shadow-food-card">
+        <img src="./images/andwi-seasoning_hero_1.png" alt="Andwi Haitian Style seasoning with fresh ingredients" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-caribbean-700/30 to-transparent"></div>
+      </div>
+      <div>
+        <div class="haitian-stripe h-1.5 w-24 mb-5"></div>
+        <p class="font-display font-semibold text-caribbean-500 uppercase text-xs tracking-[0.25em] mb-3">The Heart Behind The Flavor</p>
+        <h2 class="display-md text-ink-900 mb-6">Meet Chef Yves Beaubrun</h2>
+        <p class="text-ink-700 text-lg leading-relaxed mb-6">The Andwi seasoning line is the work of Chef Yves Beaubrun — a Haitian-born culinary artist whose recipes are rooted in family kitchens, Sunday meals, and the deep flavor traditions of the Caribbean. Every jar carries that heritage.</p>
+        <blockquote class="border-l-4 border-haitian-500 pl-5 italic text-ink-900 font-display text-xl leading-snug">"Bold flavor. Pure tradition. Made with love."</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- Made in USA -->
+  <div class="bg-cream-100 py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <p class="font-display font-semibold text-royal-500 uppercase text-xs tracking-[0.25em] mb-3">Made Here. Shipped Here.</p>
+        <h2 class="display-md text-ink-900 mb-6">Made in the USA</h2>
+        <p class="text-ink-700 text-lg leading-relaxed mb-7">All Expo Supply products are manufactured in the United States and shipped from our Lake Worth, FL facility. That means consistent quality, fast turnaround, and a real address you can reach.</p>
+        <address class="not-italic text-ink-700 leading-relaxed">
+          <p class="font-display font-semibold text-ink-900 mb-1">Expo Supply International LLC</p>
+          <p>631 South J Street<br>Lake Worth, FL 33460</p>
+          <p class="mt-3"><a href="tel:5617670388" class="link-underline text-royal-500 font-semibold">561-767-0388</a></p>
+        </address>
+      </div>
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-product-card order-1 lg:order-2">
+        <img src="./images/about_made_in_usa.png" alt="USA manufacturing facility" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── CONTACT ───────────────────────────────────────── -->
+<section id="contact" class="page">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div class="max-w-3xl mb-14">
+      <p class="font-display font-semibold text-royal-500 uppercase text-xs tracking-[0.25em] mb-4">Contact</p>
+      <h1 class="display-lg text-ink-900 mb-5">Get in Touch</h1>
+      <p class="text-ink-700 text-lg">Questions about a product, a bulk order, or stocking Expo Supply in your store? We'd love to hear from you.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10 lg:gap-16">
+      <div class="lg:col-span-2 space-y-7">
+        <div>
+          <p class="font-display text-xs uppercase tracking-wider text-ink-500 mb-2">Phone</p>
+          <a href="tel:5617670388" class="font-display text-2xl font-semibold text-ink-900 link-underline">561-767-0388</a>
+        </div>
+        <div>
+          <p class="font-display text-xs uppercase tracking-wider text-ink-500 mb-2">Email</p>
+          <a href="mailto:info@exposupply.com" class="font-display text-2xl font-semibold text-ink-900 link-underline">info@exposupply.com</a>
+        </div>
+        <div>
+          <p class="font-display text-xs uppercase tracking-wider text-ink-500 mb-2">Instagram</p>
+          <a href="https://instagram.com/exposupply" class="font-display text-2xl font-semibold text-ink-900 link-underline">@exposupply</a>
+        </div>
+        <div>
+          <p class="font-display text-xs uppercase tracking-wider text-ink-500 mb-2">Address</p>
+          <address class="not-italic font-display text-lg font-medium text-ink-900 leading-snug">631 South J Street<br>Lake Worth, FL 33460</address>
+        </div>
+      </div>
+      <form class="lg:col-span-3 bg-cream-50 rounded-2xl p-7 sm:p-10 shadow-product-card" onsubmit="event.preventDefault(); alert('Thanks — message saved locally. Hook this up to Formspree, GHL, or your backend before going live.')">
+        <h2 class="display-md text-ink-900 mb-6">Send a Message</h2>
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <label class="block"><span class="font-display text-xs uppercase tracking-wider text-ink-500 mb-1.5 block">Name</span>
+            <input type="text" required class="w-full bg-white border border-cream-200 rounded-lg px-4 py-3 focus:border-royal-500 focus:ring-0 outline-none transition-colors">
+          </label>
+          <label class="block"><span class="font-display text-xs uppercase tracking-wider text-ink-500 mb-1.5 block">Email</span>
+            <input type="email" required class="w-full bg-white border border-cream-200 rounded-lg px-4 py-3 focus:border-royal-500 focus:ring-0 outline-none transition-colors">
+          </label>
+        </div>
+        <label class="block mb-5"><span class="font-display text-xs uppercase tracking-wider text-ink-500 mb-1.5 block">Phone (optional)</span>
+          <input type="tel" class="w-full bg-white border border-cream-200 rounded-lg px-4 py-3 focus:border-royal-500 focus:ring-0 outline-none transition-colors">
+        </label>
+        <label class="block mb-6"><span class="font-display text-xs uppercase tracking-wider text-ink-500 mb-1.5 block">Message</span>
+          <textarea required rows="5" class="w-full bg-white border border-cream-200 rounded-lg px-4 py-3 focus:border-royal-500 focus:ring-0 outline-none transition-colors"></textarea>
+        </label>
+        <button type="submit" class="inline-flex items-center px-7 py-3.5 rounded-full bg-royal-500 text-white font-display font-semibold shadow-cta t-transform hover:scale-[1.03] active:scale-100 hover:bg-royal-600">Send Message
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="bg-ink-900 text-cream-100 pt-16 pb-8 relative overflow-hidden">
+  <div class="grain absolute inset-0 opacity-30"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <a href="#home" class="inline-flex"><img src="./images/approved.png" alt="Expo Supply" class="h-14 w-auto mb-5 brightness-0 invert"></a>
+        <p class="text-cream-100/70 text-sm leading-relaxed max-w-xs">Caribbean food + cleaning. Made in the USA. Shipped from Lake Worth, FL.</p>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-cream-50 mb-4 text-sm uppercase tracking-wider">Shop</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#products" class="link-underline text-cream-100/80 hover:text-white">All products</a></li>
+          <li><a href="#products?cat=food" data-shop-filter="food" class="link-underline text-cream-100/80 hover:text-white">Food line</a></li>
+          <li><a href="#products?cat=cleaning" data-shop-filter="cleaning" class="link-underline text-cream-100/80 hover:text-white">Cleaning line</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-cream-50 mb-4 text-sm uppercase tracking-wider">Company</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#about"   class="link-underline text-cream-100/80 hover:text-white">About</a></li>
+          <li><a href="#contact" class="link-underline text-cream-100/80 hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-cream-50 mb-4 text-sm uppercase tracking-wider">Connect</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="tel:5617670388" class="link-underline text-cream-100/80 hover:text-white">561-767-0388</a></li>
+          <li><a href="mailto:info@exposupply.com" class="link-underline text-cream-100/80 hover:text-white">info@exposupply.com</a></li>
+          <li><a href="https://instagram.com/exposupply" class="link-underline text-cream-100/80 hover:text-white">@exposupply</a></li>
+          <li class="text-cream-100/60 pt-1 text-xs leading-relaxed">631 South J Street<br>Lake Worth, FL 33460</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-cream-100/10 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream-100/60">
+      <p>© 2026 Expo Supply International LLC. Made in the USA.</p>
+      <div class="flex items-center gap-1.5">
+        <span class="haitian-stripe w-8 h-1 rounded-sm"></span>
+        <span>Caribbean Distribution</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── JS ─── -->
+<script>
+  // ── Product data ──────────────────────────────────────────
+  const PRODUCTS = {
+    'ives-detergent': {
+      name: 'Ives Laundry Detergent',
+      category: 'cleaning',
+      shortDesc: 'Tough on stains. Long-lasting freshness. HE-compatible.',
+      desc: 'Tough on stains and long-lasting freshness, Ives is formulated to deep-clean every load while leaving your fabrics soft and your laundry room smelling great. Works in all machines — including high-efficiency.',
+      benefits: ['Powerful stain-lifting formula','Long-lasting fresh scent','Works in all machines (HE compatible)','Concentrated — a little goes a long way'],
+      ingredients: 'Surfactants, fragrance, enzymes, optical brighteners. Suitable for HE and standard washers. Dose: ~2 oz per regular load (4 oz for heavy soil).',
+      images: ['ives-detergent_transparent.png','ives-detergent_hero_1.png','ives-detergent_hero_2.png'],
+      variants: [
+        { size: '1 gal',         price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_ives_1gal' },
+        { size: '5 gal bucket',  price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_ives_5gal' }
+      ]
+    },
+    'smell-fabric-softener': {
+      name: 'Smell Fabric — Blue Sky Fabric Softener',
+      category: 'cleaning',
+      shortDesc: 'Ultra-soft. Fresh scent. Reduces static & wrinkles.',
+      desc: 'Smell Fabric leaves clothes feeling soft and comfortable, with a long-lasting Blue Sky fresh scent. Reduces static and wrinkles, compatible with all machines including high-efficiency.',
+      benefits: ['Leaves fabrics ultra-soft','Long-lasting Blue Sky scent','Reduces static & wrinkles','HE compatible'],
+      ingredients: 'Cationic surfactants, fragrance, conditioning agents. Dose: ~1 oz per regular load (2 oz for large/heavy loads).',
+      images: ['smell-fabric-softener_transparent.png','smell-fabric-softener_hero_1.png','smell-fabric-softener_hero_2.png'],
+      variants: [
+        { size: '1 gal',         price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_smell_1gal' },
+        { size: '5 gal bucket',  price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_smell_5gal' }
+      ]
+    },
+    'andwi-seasoning': {
+      name: 'Andwi Haitian Style Artisan Seasoning',
+      category: 'food',
+      shortDesc: 'Bold flavor. Pure tradition. Made with love.',
+      desc: 'Chef Yves Beaubrun\'s signature Haitian seasoning blend — built on family recipes and passed-down techniques. The everyday flavor base for chicken, fish, vegetables, soups, and rice dishes.',
+      benefits: ['All-natural ingredients','No MSG, no artificial flavors','Versatile — works with everything','Chef-crafted by Yves Beaubrun'],
+      ingredients: 'Scallions, garlic, onion, thyme, celery, parsley, clove, sour orange, olive oil. 12 oz jar. Keep refrigerated or frozen after opening.',
+      images: ['andwi-seasoning_transparent.png','andwi-seasoning_hero_1.png','andwi-seasoning_hero_2.png'],
+      variants: [
+        { size: '12 oz', price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_andwi_12oz' }
+      ]
+    },
+    'viann-kochon-sale': {
+      name: 'Viann Kochon Sale — Andwi',
+      category: 'food',
+      shortDesc: 'Haitian-style pork seasoning. No MSG. No artificial flavors.',
+      desc: 'Viann Kochon Sale is the pork-specific blend in the Andwi line — a marinade-and-rub for griot, kochon boukannen, and any rich pork dish. Rich, deep, traditional flavor.',
+      benefits: ['Tailored for pork','Authentic Haitian marinade base','No MSG, no artificial flavors','Bold, deep flavor profile'],
+      ingredients: 'Scallions, garlic, onion, thyme, celery, parsley, clove, sour orange, olive oil. 12 oz jar. Keep refrigerated or frozen after opening.',
+      images: ['viann-kochon-sale_transparent.png','viann-kochon-sale_hero_1.png','viann-kochon-sale_hero_2.png'],
+      variants: [
+        { size: '12 oz', price: 'XX.XX', stripe: 'https://buy.stripe.com/REPLACE_viann_12oz' }
+      ]
+    }
+  };
+
+  const SKUS = Object.keys(PRODUCTS);
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  // ── Render product cards ──────────────────────────────────
+  const card = (sku) => {
+    const p = PRODUCTS[sku];
+    const v = p.variants[0];
+    const bgClass = p.category === 'cleaning' ? 'cleaning' : '';
+    return `
+      <a href="#product/${sku}" class="group" data-cat="${p.category}">
+        <div class="card-img-wrap ${bgClass} rounded-2xl aspect-square overflow-hidden mb-4 t-shadow shadow-product-card group-hover:shadow-product-card-hover">
+          <div class="w-full h-full t-transform group-hover:scale-[1.04] flex items-center justify-center p-5 sm:p-8">
+            <img src="./images/${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain" loading="lazy">
+          </div>
+        </div>
+        <p class="font-display text-xs uppercase tracking-[0.2em] text-${p.category === 'food' ? 'caribbean-500' : 'royal-500'} font-semibold mb-1.5">${p.category === 'food' ? 'Caribbean Food' : 'Cleaning'}</p>
+        <h3 class="font-display font-semibold text-ink-900 text-lg leading-snug mb-1 group-hover:text-royal-500 transition-colors">${p.name}</h3>
+        <p class="text-ink-500 text-sm">From <span class="font-display font-semibold text-ink-900">$${v.price}</span></p>
+      </a>`;
+  };
+
+  // ── Hash router ──────────────────────────────────────────
+  const setActivePage = (id) => {
+    $$('.page').forEach(p => p.classList.remove('active'));
+    const target = $('#' + id);
+    if (target) target.classList.add('active');
+    $$('.nav-link').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      a.classList.toggle('active', href === '#' + id || (id === 'products' && href === '#products') || (id === 'product-detail' && href === '#products'));
+    });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const route = () => {
+    const raw = location.hash.slice(1) || 'home';
+    const [path, query] = raw.split('?');
+    const parts = path.split('/');
+    if (parts[0] === 'product' && parts[1]) {
+      renderProductDetail(parts[1]);
+      setActivePage('product-detail');
+      return;
+    }
+    if (parts[0] === 'products') {
+      // optional ?cat=food|cleaning
+      let cat = 'all';
+      if (query) {
+        const m = query.match(/cat=([a-z]+)/);
+        if (m) cat = m[1];
+      }
+      filterProducts(cat);
+      setActivePage('products');
+      return;
+    }
+    if (parts[0] === 'about')   { setActivePage('about'); return; }
+    if (parts[0] === 'contact') { setActivePage('contact'); return; }
+    setActivePage('home');
+  };
+
+  // ── Products grid + filter ───────────────────────────────
+  const renderProductGrid = () => {
+    $('#product-grid').innerHTML = SKUS.map(card).join('');
+  };
+  const filterProducts = (cat) => {
+    $$('.filter-tab').forEach(t => {
+      const active = t.dataset.filter === cat;
+      t.classList.toggle('active', active);
+      t.classList.toggle('bg-royal-500', active);
+      t.classList.toggle('text-white', active);
+      t.classList.toggle('text-ink-700', !active);
+    });
+    $$('#product-grid > a').forEach(el => {
+      const show = cat === 'all' || el.dataset.cat === cat;
+      el.style.display = show ? '' : 'none';
+    });
+  };
+
+  // ── Product detail render ────────────────────────────────
+  let currentVariantIdx = 0;
+  const renderProductDetail = (sku) => {
+    const p = PRODUCTS[sku];
+    if (!p) { location.hash = '#products'; return; }
+    currentVariantIdx = 0;
+
+    $('#pd-cat').textContent = p.category === 'food' ? 'Caribbean Food' : 'Cleaning Line';
+    $('#pd-cat').className = `font-display font-semibold uppercase text-xs tracking-[0.25em] mb-3 ${p.category === 'food' ? 'text-caribbean-500' : 'text-royal-500'}`;
+    $('#pd-name').textContent = p.name;
+    $('#pd-desc').textContent = p.shortDesc;
+    $('#pd-panel-desc').innerHTML = `<p class="text-ink-700 leading-relaxed">${p.desc}</p>`;
+    $('#pd-panel-benefits').innerHTML = '<ul class="space-y-2.5 text-ink-700">' + p.benefits.map(b => `<li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-${p.category === 'food' ? 'caribbean' : 'royal'}-500 mr-3 mt-2 shrink-0"></span>${b}</li>`).join('') + '</ul>';
+    $('#pd-panel-ingredients').innerHTML = `<p class="text-ink-700 leading-relaxed">${p.ingredients}</p>`;
+
+    // Gallery
+    $('#pd-main-img').src = './images/' + p.images[0];
+    $('#pd-main-img').alt = p.name;
+    $('#pd-main').classList.toggle('cleaning', p.category === 'cleaning');
+    $('#pd-thumbs').innerHTML = p.images.map((src, i) => `
+      <button data-img-idx="${i}" class="pd-thumb aspect-square rounded-xl overflow-hidden border-2 ${i === 0 ? 'border-royal-500' : 'border-cream-200'} t-transform hover:scale-[1.03] active:scale-100">
+        <div class="w-full h-full card-img-wrap ${p.category === 'cleaning' ? 'cleaning' : ''} flex items-center justify-center p-3">
+          <img src="./images/${src}" alt="${p.name} ${i === 0 ? '(main)' : i === 1 ? '(lifestyle)' : '(studio)'}" class="max-w-full max-h-full object-contain">
+        </div>
+      </button>`).join('');
+
+    // Variants
+    if (p.variants.length > 1) {
+      $('#pd-variants-wrap').classList.remove('hidden');
+      $('#pd-variants').innerHTML = p.variants.map((v, i) => `
+        <button data-variant-idx="${i}" class="pd-variant variant-pill px-5 py-2 rounded-full font-display font-semibold text-sm ${i === 0 ? 'bg-royal-500 text-white' : 'text-ink-700'}">${v.size}</button>
+      `).join('');
+    } else {
+      $('#pd-variants-wrap').classList.add('hidden');
+    }
+    updateBuyButton(p);
+
+    // Tab panels reset
+    $$('.pd-tab').forEach(t => {
+      const active = t.dataset.tab === 'desc';
+      t.classList.toggle('text-ink-900', active);
+      t.classList.toggle('text-ink-500', !active);
+      t.classList.toggle('border-b-2', active);
+      t.classList.toggle('border-royal-500', active);
+      t.classList.toggle('-mb-px', active);
+    });
+    $$('.pd-tab-panel').forEach(panel => panel.classList.toggle('hidden', panel.dataset.panel !== 'desc'));
+
+    // Related
+    $('#pd-related').innerHTML = SKUS.filter(s => s !== sku && PRODUCTS[s].category === p.category)
+      .concat(SKUS.filter(s => s !== sku && PRODUCTS[s].category !== p.category))
+      .slice(0, 3)
+      .map(card).join('');
+  };
+
+  const updateBuyButton = (p) => {
+    const v = p.variants[currentVariantIdx];
+    $('#pd-price').textContent = '$' + v.price;
+    $('#pd-buy').href = v.stripe;
+  };
+
+  // ── Event delegation ─────────────────────────────────────
+  document.addEventListener('click', (e) => {
+    // Variant pill
+    const variantBtn = e.target.closest('.pd-variant');
+    if (variantBtn) {
+      currentVariantIdx = parseInt(variantBtn.dataset.variantIdx, 10);
+      const sku = (location.hash.match(/#product\/([\w-]+)/) || [])[1];
+      const p = PRODUCTS[sku];
+      $$('.pd-variant').forEach(b => {
+        const active = parseInt(b.dataset.variantIdx, 10) === currentVariantIdx;
+        b.classList.toggle('bg-royal-500', active);
+        b.classList.toggle('text-white',   active);
+        b.classList.toggle('text-ink-700', !active);
+      });
+      if (p) updateBuyButton(p);
+    }
+
+    // Thumbnail click
+    const thumb = e.target.closest('.pd-thumb');
+    if (thumb) {
+      const idx = parseInt(thumb.dataset.imgIdx, 10);
+      const sku = (location.hash.match(/#product\/([\w-]+)/) || [])[1];
+      const p = PRODUCTS[sku];
+      if (p) {
+        $('#pd-main-img').src = './images/' + p.images[idx];
+        $$('.pd-thumb').forEach((t, i) => {
+          t.classList.toggle('border-royal-500', i === idx);
+          t.classList.toggle('border-cream-200', i !== idx);
+        });
+      }
+    }
+
+    // Tab buttons
+    const tabBtn = e.target.closest('.pd-tab');
+    if (tabBtn) {
+      const tab = tabBtn.dataset.tab;
+      $$('.pd-tab').forEach(t => {
+        const active = t.dataset.tab === tab;
+        t.classList.toggle('text-ink-900', active);
+        t.classList.toggle('text-ink-500', !active);
+        t.classList.toggle('border-b-2', active);
+        t.classList.toggle('border-royal-500', active);
+        t.classList.toggle('-mb-px', active);
+      });
+      $$('.pd-tab-panel').forEach(panel => panel.classList.toggle('hidden', panel.dataset.panel !== tab));
+    }
+
+    // Filter tabs on /products
+    const filterBtn = e.target.closest('.filter-tab');
+    if (filterBtn) {
+      filterProducts(filterBtn.dataset.filter);
+      const newQ = filterBtn.dataset.filter === 'all' ? '' : '?cat=' + filterBtn.dataset.filter;
+      history.replaceState(null, '', '#products' + newQ);
+    }
+
+    // "Shop the food/cleaning line" inline links — set filter on navigation
+    const shopFilter = e.target.closest('[data-shop-filter]');
+    if (shopFilter) {
+      const cat = shopFilter.dataset.shopFilter;
+      e.preventDefault();
+      location.hash = '#products?cat=' + cat;
+    }
+  });
+
+  // ── Mobile nav ──────────────────────────────────────────
+  $('#mobile-toggle').addEventListener('click', () => {
+    $('#mobile-nav').classList.toggle('hidden');
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#mobile-nav a')) $('#mobile-nav').classList.add('hidden');
+  });
+
+  // ── Boot ────────────────────────────────────────────────
+  renderProductGrid();
+  window.addEventListener('hashchange', route);
+  route();
+</script>
+</body>
+</html>
