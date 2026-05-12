@@ -21,7 +21,9 @@ Tested with Kloudbean, deployable to Cloudflare Pages, Netlify, Vercel, GitHub P
 
 ## Pre-launch checklist
 
-- [ ] Replace `$XX.XX` prices in the `PRODUCTS` object inside `index.html`
-- [ ] Replace `https://buy.stripe.com/REPLACE_*` URLs with real Stripe payment links per variant
+- [ ] Prices live (Ives 1gal $10 / 5gal $50, Smell Fabric same, Andwi/Viann 16oz $10 / 24oz $20 / 32oz $30 / 5gal $300)
+- [ ] All Buy buttons → WhatsApp message links (wa.me/15617670388) with pre-filled product-specific text
+- [ ] Email: beaubrunyvesjoseph@gmail.com (Chef Yves)
+- [ ] Phone: 561-767-0388
 - [ ] Hook contact form to Formspree / GoHighLevel (currently `alert()` on submit)
 - [ ] Swap chef-section image with a real photo of Chef Yves Beaubrun
